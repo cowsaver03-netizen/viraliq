@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Members - Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/base.css">
+        <link rel="stylesheet" href="css/modules/team.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo"><i class="fas fa-rocket"></i><span>Admin Panel</span></div>
+            <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        </div>
+        <nav class="sidebar-nav"><ul>
+            <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fas fa-chart-line"></i><span>Dashboard</span></a></li>
+            <li class="nav-item"><a href="pricing.html" class="nav-link"><i class="fas fa-tags"></i><span>Pricing Plans</span></a></li>
+            <li class="nav-item"><a href="blog.html" class="nav-link"><i class="fas fa-newspaper"></i><span>Blog Management</span></a></li>
+            <li class="nav-item active"><a href="team.html" class="nav-link"><i class="fas fa-users"></i><span>Team Members</span></a></li>
+            <li class="nav-item"><a href="testimonials.html" class="nav-link"><i class="fas fa-star"></i><span>Testimonials</span></a></li>
+            <li class="nav-item"><a href="customers.html" class="nav-link"><i class="fas fa-users-circle"></i><span>Customer Portal</span></a></li>
+            <li class="nav-item"><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i><span>Contact Inquiries</span></a></li>
+            <li class="nav-item"><a href="newsletter.html" class="nav-link"><i class="fas fa-paper-plane"></i><span>Newsletter</span></a></li>
+            <li class="nav-item"><a href="social.html" class="nav-link"><i class="fas fa-share-nodes"></i><span>Social Media</span></a></li>
+            <li class="nav-item"><a href="links.html" class="nav-link"><i class="fas fa-link"></i><span>Pricing Links</span></a></li>
+            <li class="nav-item"><a href="whatsapp.html" class="nav-link"><i class="fab fa-whatsapp"></i><span>WhatsApp Config</span></a></li>
+        </ul></nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-navbar">
+            <div class="navbar-left">
+                <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+                <h1 class="page-title">Team Members</h1>
+            </div>
+            <div class="navbar-right">
+                <div class="user-menu">
+                    <!-- <img src="https://via.placeholder.com/40" alt="User" class="user-avatar"> -->
+                    <button class="logout-btn" onclick="window.location.href='../'"><i class="fas fa-sign-out-alt"></i></button>
+                </div>
+            </div>
+        </header>
+
+        <div class="content">
+            <div class="module-header">
+                <h2>Team Members</h2>
+                <button class="btn btn-primary" onclick="openModal('teamModal')"><i class="fas fa-plus"></i> Add Team Member</button>
+            </div>
+            <div class="team-grid" id="teamGrid"></div>
+        </div>
+    </main>
+
+    <div class="modal" id="teamModal">
+        <div class="modal-content">
+            <div class="modal-header"><h3>Add/Edit Team Member</h3><button class="close-btn" onclick="closeModal('teamModal')">×</button></div>
+            <form id="teamForm">
+                <div class="form-group"><label for="teamName">Name *</label>
+                    <input type="text" id="teamName" name="name" required placeholder="Full name">
+                <div class="form-group"><label for="teamDesignation">Designation *</label>
+                    <input type="text" id="teamDesignation" name="designation" required placeholder="Job title">
+                <div class="form-group"><label for="teamPhoto">Photo</label>
+                    <input type="file" id="teamPhoto" name="image" accept="image/*">
+                    <div id="teamPhotoPreview" class="photo-preview"></div></div>
+                <div class="form-group"><label for="teamInstagram">Instagram</label>
+                    <input type="url" id="teamInstagram" name="instagram" placeholder="https://instagram.com/..."></div>
+                <div class="form-group"><label for="teamFacebook">Facebook</label>
+                    <input type="url" id="teamFacebook" name="facebook" placeholder="https://facebook.com/..."></div>
+                <div class="form-group"><label for="teamTwitter">Twitter (X)</label>
+                    <input type="url" id="teamTwitter" name="twitter" placeholder="https://twitter.com/..."></div>
+                <div class="form-group"><label for="teamWhatsapp">WhatsApp</label>
+                    <input type="tel" id="teamWhatsapp" name="whatsapp" placeholder="+91 98765 43210"></div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('teamModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Member</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="confirmDeleteModal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header"><h3>Confirm Delete</h3><button class="close-btn" onclick="closeModal('confirmDeleteModal')">×</button></div>
+            <div class="modal-body"><p id="deleteConfirmText">Are you sure?</p></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('confirmDeleteModal')">Cancel</button>
+                <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="js/modules/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/modules/team.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', () => renderTeamCards());</script>
+</body>
+</html>

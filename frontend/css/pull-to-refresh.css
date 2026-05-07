@@ -1,0 +1,9 @@
+/* Native pull-to-refresh compatibility styles */
+
+html,
+body {
+    overscroll-behavior-y: auto;
+    overflow-y: auto;
+    touch-action: pan-y pinch-zoom;
+    -webkit-overflow-scrolling: touch;
+}

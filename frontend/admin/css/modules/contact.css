@@ -1,0 +1,70 @@
+/* ===== CONTACT INQUIRIES MODULE ===== */
+.contact-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-sm);
+}
+
+.contact-table thead {
+    background: var(--bg-secondary);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.contact-table th {
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.contact-table td {
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.contact-table tbody tr:hover {
+    background: var(--bg-secondary);
+}
+
+.contact-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.contact-name {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.contact-email {
+    color: var(--primary);
+}
+
+.contact-message {
+    color: var(--text-secondary);
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contact-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+@media (max-width: 768px) {
+    .contact-table {
+        font-size: var(--font-xs);
+    }
+
+    .contact-table th,
+    .contact-table td {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+}

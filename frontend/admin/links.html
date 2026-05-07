@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Links Generator - Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/base.css">
+        <link rel="stylesheet" href="css/modules/links.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo"><i class="fas fa-rocket"></i><span>Admin Panel</span></div>
+            <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        </div>
+        <nav class="sidebar-nav"><ul>
+            <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fas fa-chart-line"></i><span>Dashboard</span></a></li>
+            <li class="nav-item"><a href="pricing.html" class="nav-link"><i class="fas fa-tags"></i><span>Pricing Plans</span></a></li>
+            <li class="nav-item"><a href="blog.html" class="nav-link"><i class="fas fa-newspaper"></i><span>Blog Management</span></a></li>
+            <li class="nav-item"><a href="team.html" class="nav-link"><i class="fas fa-users"></i><span>Team Members</span></a></li>
+            <li class="nav-item"><a href="testimonials.html" class="nav-link"><i class="fas fa-star"></i><span>Testimonials</span></a></li>
+            <li class="nav-item"><a href="customers.html" class="nav-link"><i class="fas fa-users-circle"></i><span>Customer Portal</span></a></li>
+            <li class="nav-item"><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i><span>Contact Inquiries</span></a></li>
+            <li class="nav-item"><a href="newsletter.html" class="nav-link"><i class="fas fa-paper-plane"></i><span>Newsletter</span></a></li>
+            <li class="nav-item"><a href="social.html" class="nav-link"><i class="fas fa-share-nodes"></i><span>Social Media</span></a></li>
+            <li class="nav-item active"><a href="links.html" class="nav-link"><i class="fas fa-link"></i><span>Pricing Links</span></a></li>
+            <li class="nav-item"><a href="whatsapp.html" class="nav-link"><i class="fab fa-whatsapp"></i><span>WhatsApp Config</span></a></li>
+        </ul></nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-navbar">
+            <div class="navbar-left">
+                <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+                <h1 class="page-title">Pricing Links Generator</h1>
+            </div>
+            <div class="navbar-right">
+                <div class="user-menu">
+                    <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                    <button class="logout-btn" onclick="window.location.href='../'"><i class="fas fa-sign-out-alt"></i></button>
+                </div>
+            </div>
+        </header>
+
+        <div class="content">
+            <div class="module-header">
+                <h2>Pricing Links Generator</h2>
+                <p>Generate custom pricing links with discount options</p>
+            </div>
+
+            <div class="links-generator">
+                <div class="card links-form">
+                    <h3>Generate New Link</h3>
+                    <form id="linkGeneratorForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="selectPlan">Select Plan</label>
+                                <select id="selectPlan" required>
+                                    <option value="">Choose a plan...</option>
+                                </select>
+                                <small style="color: var(--text-tertiary); margin-top: 8px; display: block;">Optional when generating a custom amount link.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="linkMode">Link Type *</label>
+                                <select id="linkMode" required onchange="toggleLinkMode()">
+                                    <option value="discount" selected>Discount Link</option>
+                                    <option value="amount">Custom Amount Razorpay Link</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group" id="customDiscountGroup" style="display: none;">
+                                <label for="customDiscount" id="customValueLabel">Custom Discount (₹)</label>
+                                <input type="number" id="customDiscount" min="0" placeholder="Enter amount" step="0.01">
+                                <small style="color: var(--text-tertiary); margin-top: 8px;">Switch to custom amount to generate a Razorpay checkout link for the exact amount.</small>
+                            </div>
+
+                            <div class="form-group" id="discountPresetGroup">
+                                <label for="discount">Discount % *</label>
+                                <select id="discount" required>
+                                    <option value="0">No Discount</option>
+                                    <option value="10">10%</option>
+                                    <option value="20">20%</option>
+                                    <option value="30">30%</option>
+                                    <option value="40">40%</option>
+                                    <option value="custom">Custom Amount</option>
+                                </select>
+                            </div>
+
+                            <button type="button" class="btn btn-primary generate-link-btn" onclick="generatePricingLink()">
+                                <i class="fas fa-link"></i> Generate
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h3>Generated Links</h3>
+                    <div id="generatedLinksList">
+                        <p class="text-center">No links generated yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal" id="confirmDeleteModal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header"><h3>Confirm Delete</h3><button class="close-btn" onclick="closeModal('confirmDeleteModal')">×</button></div>
+            <div class="modal-body"><p id="deleteConfirmText">Are you sure?</p></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('confirmDeleteModal')">Cancel</button>
+                <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="js/auth.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/components.js"></script>
+    <script>
+        const LINK_STORAGE_KEY = 'admin_generated_links';
+        const PLAN_STORAGE_KEY = 'admin_pricing';
+
+        function getStoredPlans() {
+            try {
+                return JSON.parse(localStorage.getItem(PLAN_STORAGE_KEY) || '[]');
+            } catch {
+                return [];
+            }
+        }
+
+        function getStoredLinks() {
+            try {
+                return JSON.parse(localStorage.getItem(LINK_STORAGE_KEY) || '[]');
+            } catch {
+                return [];
+            }
+        }
+
+        function saveStoredLinks(links) {
+            localStorage.setItem(LINK_STORAGE_KEY, JSON.stringify(links));
+        }
+
+        function updatePlanSelectOptions() {
+            const plans = getStoredPlans();
+            const select = document.getElementById('selectPlan');
+
+            if (!select) {
+                return;
+            }
+
+            if (!plans.length) {
+                select.innerHTML = '<option value="">No plans saved yet</option>';
+                return;
+            }
+
+            select.innerHTML = '<option value="">Choose a plan...</option>' +
+                plans.map(plan => `<option value="${plan.id}">${escapeHtml(plan.name)} - ₹${Number(plan.price || 0).toLocaleString('en-IN')}</option>`).join('');
+        }
+
+        function generatePricingLink() {
+            const planId = document.getElementById('selectPlan').value;
+            const linkMode = document.getElementById('linkMode').value;
+            const discount = document.getElementById('discount').value;
+            const customDiscount = document.getElementById('customDiscount').value.trim();
+            const plans = getStoredPlans();
+            const selectedPlan = planId ? plans.find(plan => String(plan.id) === String(planId)) : null;
+
+            if (linkMode !== 'amount' && !selectedPlan) {
+                notificationManager.error('Please select a plan');
+                return;
+            }
+
+            let linkType = 'discount';
+            let displayLabel = 'Discount';
+            let planName = selectedPlan ? selectedPlan.name : 'Custom Payment';
+            let originalPrice = selectedPlan ? Number(selectedPlan.price || 0) : null;
+            let finalPrice = selectedPlan ? Number(selectedPlan.price || 0) : 0;
+            let discountAmount = 0;
+            let finalDiscount = 0;
+            let razorpayId = selectedPlan && selectedPlan.razorpayId ? selectedPlan.razorpayId : '';
+
+            if (linkMode === 'amount') {
+                linkType = 'amount';
+                displayLabel = 'Custom Amount';
+                finalPrice = parseFloat(customDiscount);
+
+                if (!customDiscount || Number.isNaN(finalPrice) || finalPrice <= 0) {
+                    notificationManager.error('Please enter a valid custom price');
+                    return;
+                }
+
+                if (selectedPlan) {
+                    planName = selectedPlan.name;
+                    originalPrice = Number(selectedPlan.price || 0);
+                    discountAmount = Math.max(0, originalPrice - finalPrice);
+                    finalDiscount = originalPrice > 0 ? Number(((discountAmount / originalPrice) * 100).toFixed(2)) : 0;
+                    razorpayId = selectedPlan.razorpayId || '';
+                } else {
+                    originalPrice = null;
+                    planName = 'Custom Payment';
+                }
+            } else {
+                if (discount === 'custom') {
+                    if (!customDiscount || Number(customDiscount) <= 0) {
+                        notificationManager.error('Please enter valid custom discount amount');
+                        return;
+                    }
+                    discountAmount = Number(customDiscount);
+                } else if (discount !== '0') {
+                    discountAmount = (Number(selectedPlan.price || 0) * Number(discount)) / 100;
+                }
+
+                finalDiscount = discount === 'custom' ? 0 : Number(discount);
+                finalPrice = Math.max(0, Number(selectedPlan.price || 0) - discountAmount);
+            }
+
+            const linkId = generateRandomString(12);
+            const baseUrl = new URL('../pricing.html', window.location.href);
+            const linkParams = {
+                link: linkId,
+                type: linkType,
+                name: planName,
+                discount: linkType === 'amount' ? finalPrice.toFixed(2) : (discount === 'custom' ? discountAmount.toFixed(2) : finalDiscount),
+                razorpay: razorpayId,
+                price: finalPrice.toFixed(2)
+            };
+
+            if (selectedPlan) {
+                linkParams.plan = selectedPlan.id;
+            }
+
+            if (linkType === 'amount') {
+                linkParams.amount = finalPrice.toFixed(2);
+            }
+
+            const generatedLink = generateUrlWithParams(baseUrl.toString(), linkParams);
+            const links = getStoredLinks();
+            const linkData = {
+                id: Date.now(),
+                planId: selectedPlan ? selectedPlan.id : null,
+                planName: planName,
+                discountType: linkType,
+                discount: linkType === 'amount' ? finalPrice.toFixed(2) : (discount === 'custom' ? discountAmount.toFixed(2) : finalDiscount),
+                originalPrice: originalPrice,
+                discountAmount: discountAmount.toFixed(2),
+                finalPrice: finalPrice.toFixed(2),
+                url: generatedLink,
+                linkId: linkId,
+                razorpayId: razorpayId,
+                createdAt: new Date().toLocaleString()
+            };
+
+            links.unshift(linkData);
+            saveStoredLinks(links);
+            notificationManager.success('Link generated successfully! ✓');
+            renderGeneratedLinks();
+
+            document.getElementById('selectPlan').value = '';
+            document.getElementById('linkMode').value = 'discount';
+            document.getElementById('discount').value = '0';
+            document.getElementById('customDiscount').value = '';
+            document.getElementById('customDiscountGroup').style.display = 'none';
+            document.getElementById('discountPresetGroup').style.display = 'block';
+            document.getElementById('customValueLabel').textContent = 'Custom Discount (₹)';
+        }
+
+        function renderGeneratedLinks() {
+            const links = getStoredLinks();
+            const container = document.getElementById('generatedLinksList');
+
+            if (!container) {
+                return;
+            }
+
+            if (!links.length) {
+                container.innerHTML = '<p class="text-center" style="color: var(--text-secondary); padding: 20px;">No links generated yet</p>';
+                return;
+            }
+
+            container.innerHTML = links.map(link => `
+                <div class="generated-link" style="margin-bottom: 15px; padding: 15px; background: var(--bg-secondary); border-radius: var(--radius-md); border-left: 4px solid var(--primary);">
+                    <div style="display: flex; justify-content: space-between; align-items: start; gap: 15px; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 250px;">
+                            <strong style="color: var(--text-primary); display: block; margin-bottom: 8px;">${escapeHtml(link.planName)}</strong>
+                            <div style="color: var(--text-secondary); font-size: 13px; line-height: 1.6;">
+                                ${link.originalPrice !== null && link.originalPrice !== undefined && link.originalPrice !== '' ? `<div>💰 Original: ₹${Number(link.originalPrice).toFixed(2)}</div>` : '<div>💰 Type: Custom Payment</div>'}
+                                <div>🏷️ ${link.discountType === 'amount' ? 'Custom Amount' : 'Discount'}: ${link.discountType === 'amount' ? '₹' + Number(link.finalPrice).toFixed(2) : (link.discountType === 'custom' ? '₹' + Number(link.discount).toFixed(2) : link.discount + '%')}</div>
+                                <div>✨ Final: ₹${Number(link.finalPrice).toFixed(2)}</div>
+                                ${link.razorpayId ? `<div>💳 Razorpay ID: ${escapeHtml(link.razorpayId)}</div>` : ''}
+                                <div style="margin-top: 8px; color: var(--text-tertiary); font-size: 12px;">
+                                    📅 ${escapeHtml(link.createdAt)}
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <button class="btn btn-primary btn-small" data-url="${encodeURIComponent(link.url)}" onclick="copyLinkToClipboard(decodeURIComponent(this.dataset.url)); notificationManager.success('Link copied! 📋')" title="Copy Link">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <button class="btn btn-secondary btn-small" data-url="${encodeURIComponent(link.url)}" onclick="viewLink(decodeURIComponent(this.dataset.url))" title="Preview Link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </button>
+                            <button class="btn btn-danger btn-small" onclick="deleteGeneratedLink(${link.id})" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-color); word-break: break-all;">
+                        <small style="color: var(--text-tertiary);">
+                            <strong>Link:</strong> <code style="background: var(--bg-primary); padding: 4px 6px; border-radius: 3px; color: var(--primary);">${escapeHtml(truncateText(link.url, 80))}</code>
+                        </small>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function copyLinkToClipboard(url) {
+            copyToClipboard(url);
+        }
+
+        function viewLink(url) {
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+
+        function deleteGeneratedLink(id) {
+            const links = getStoredLinks();
+            const link = links.find(item => item.id === id);
+
+            if (!link) {
+                return;
+            }
+
+            setDeleteCallback(() => {
+                const updatedLinks = getStoredLinks().filter(item => item.id !== id);
+                saveStoredLinks(updatedLinks);
+                notificationManager.success('Link deleted successfully');
+                renderGeneratedLinks();
+            });
+
+            showDeleteConfirmation(`Delete link for "${link.planName}"? This will remove the discount link.`);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updatePlanSelectOptions();
+            renderGeneratedLinks();
+        });
+
+        function toggleLinkMode() {
+            const mode = document.getElementById('linkMode').value;
+            const customGroup = document.getElementById('customDiscountGroup');
+            const discountGroup = document.getElementById('discountPresetGroup');
+            const label = document.getElementById('customValueLabel');
+
+            if (mode === 'amount') {
+                customGroup.style.display = 'block';
+                discountGroup.style.display = 'none';
+                label.textContent = 'Custom Amount (₹)';
+            } else {
+                customGroup.style.display = 'none';
+                discountGroup.style.display = 'block';
+                label.textContent = 'Custom Discount (₹)';
+            }
+        }
+    </script>
+    <script src="js/app.js"></script>
+</body>
+</html>

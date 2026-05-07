@@ -1,0 +1,110 @@
+/* ===== BLOG MODULE ===== */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.blog-thumb {
+    width: 72px;
+    height: 48px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+.blog-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.blog-thumb i {
+    color: var(--text-tertiary);
+}
+
+.blog-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.blog-card h4 {
+    margin-top: 0;
+    color: var(--text-primary);
+}
+
+.blog-meta {
+    display: flex;
+    gap: var(--spacing-md);
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    margin-bottom: var(--spacing-md);
+}
+
+.blog-description {
+    color: var(--text-secondary);
+    flex: 1;
+    margin-bottom: var(--spacing-lg);
+}
+
+.blog-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: auto;
+}
+
+#blogModal .modal-content {
+    max-width: 760px;
+    max-height: 88vh;
+    overflow: hidden;
+}
+
+#blogModal form {
+    padding: var(--spacing-xl);
+    overflow-y: auto;
+    max-height: calc(88vh - 86px);
+}
+
+#blogModal .form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+#blogModal .photo-preview {
+    height: 170px;
+    border-radius: var(--radius-lg);
+}
+
+#blogModal .form-actions {
+    position: static;
+    margin-bottom: 0;
+    background: transparent;
+}
+
+@media (max-width: 768px) {
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #blogModal form {
+        padding: var(--spacing-lg);
+        max-height: calc(90vh - 82px);
+    }
+}

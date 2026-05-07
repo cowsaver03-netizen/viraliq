@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Gencyo Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/base.css">
+        <link rel="stylesheet" href="css/modules/dashboard.css">
+        <link rel="stylesheet" href="css/components/badges.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-rocket"></i>
+                <span>Admin Panel</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="nav-item active" data-module="dashboard">
+                    <a href="#dashboard" class="nav-link">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-module="pricing">
+                    <a href="#pricing" class="nav-link">
+                        <i class="fas fa-tags"></i>
+                        <span>Pricing Plans</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-module="blog">
+                    <a href="#blog" class="nav-link">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Blog Management</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-module="team">
+                    <a href="#team" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        <span>Team Members</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-module="testimonials">
+                    <a href="#testimonials" class="nav-link">
+                        <i class="fas fa-star"></i>
+                        <span>Testimonials</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-module="customers">
+                    <a href="#customers" class="nav-link">
+                        <i class="fas fa-users-circle"></i>
+                        <span>Customer Portal</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-module="contact">
+                    <a href="#contact" class="nav-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contact Inquiries</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-module="newsletter">
+                    <a href="#newsletter" class="nav-link">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Newsletter</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-module="social">
+                    <a href="#social" class="nav-link">
+                        <i class="fas fa-share-nodes"></i>
+                        <span>Social Media</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-module="links">
+                    <a href="#links" class="nav-link">
+                        <i class="fas fa-link"></i>
+                        <span>Pricing Links</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-module="whatsapp">
+                    <a href="#whatsapp" class="nav-link">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp Config</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Navbar -->
+        <header class="top-navbar">
+            <div class="navbar-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Dashboard</h1>
+            </div>
+            <div class="navbar-right">
+                <div class="search-box">
+                    <input type="text" placeholder="Search...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="user-menu">
+                    <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                    <span class="user-name">Admin User</span>
+                    <button class="logout-btn" onclick="window.location.href='../'">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <div class="content">
+            <!-- ===== DASHBOARD MODULE ===== -->
+            <section id="dashboard" class="module active">
+                <div class="module-header">
+                    <h2>Dashboard Overview</h2>
+                    <p>Welcome back! Here's your business overview.</p>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Total Customers</h3>
+                            <p class="stat-number" id="totalCustomers">0</p>
+                            <small>Active users</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Total Leads</h3>
+                            <p class="stat-number" id="totalLeads">0</p>
+                            <small>Contact inquiries</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Active Plans</h3>
+                            <p class="stat-number" id="activePlans">0</p>
+                            <small>Completed transactions</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                            <i class="fas fa-hourglass-half"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Pending Plans</h3>
+                            <p class="stat-number" id="pendingPlans">0</p>
+                            <small>Awaiting action</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity Table -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Recent Activity</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                    <th>Module</th>
+                                    <th>Details</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="activityLog">
+                                <tr>
+                                    <td colspan="5" class="text-center">No activity yet</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== PRICING MANAGEMENT MODULE ===== -->
+            <section id="pricing" class="module">
+                <div class="module-header">
+                    <h2>Pricing Plans Management</h2>
+                    <button class="btn btn-primary" onclick="openModal('pricingModal')">
+                        <i class="fas fa-plus"></i> Add New Plan
+                    </button>
+                </div>
+
+                <div class="pricing-grid" id="pricingGrid">
+                    <!-- Pricing cards will be populated here -->
+                </div>
+            </section>
+
+            <!-- ===== BLOG MANAGEMENT MODULE ===== -->
+            <section id="blog" class="module">
+                <div class="module-header">
+                    <h2>Blog Management</h2>
+                    <button class="btn btn-primary" onclick="openModal('blogModal')">
+                        <i class="fas fa-plus"></i> Add New Blog
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Keyword</th>
+                                    <th>Description Preview</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="blogTable">
+                                <tr>
+                                    <td colspan="5" class="text-center">No blogs yet</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== TEAM MANAGEMENT MODULE ===== -->
+            <section id="team" class="module">
+                <div class="module-header">
+                    <h2>Team Members</h2>
+                    <button class="btn btn-primary" onclick="openModal('teamModal')">
+                        <i class="fas fa-plus"></i> Add Team Member
+                    </button>
+                </div>
+
+                <div class="team-grid" id="teamGrid">
+                    <!-- Team cards will be populated here -->
+                </div>
+            </section>
+
+            <!-- ===== TESTIMONIALS MODULE ===== -->
+            <section id="testimonials" class="module">
+                <div class="module-header">
+                    <h2>Testimonials Management</h2>
+                    <button class="btn btn-primary" onclick="openModal('testimonialModal')">
+                        <i class="fas fa-plus"></i> Add Testimonial
+                    </button>
+                </div>
+
+                <div class="testimonials-grid" id="testimonialsGrid">
+                    <!-- Testimonials will be populated here -->
+                </div>
+            </section>
+
+            <!-- ===== CUSTOMERS MODULE ===== -->
+            <section id="customers" class="module">
+                <div class="module-header">
+                    <h2>Customer Portal</h2>
+                </div>
+
+                <div class="filter-section">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                    <button class="filter-btn" data-filter="pending">Pending</button>
+                    <button class="btn btn-secondary" onclick="downloadCustomerCSV()">
+                        <i class="fas fa-download"></i> Export CSV
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Plan</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customersTable">
+                                <tr>
+                                    <td colspan="6" class="text-center">No customers yet</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== CONTACT INQUIRIES MODULE ===== -->
+            <section id="contact" class="module">
+                <div class="module-header">
+                    <h2>Contact Form Inquiries</h2>
+                    <button class="btn btn-secondary" onclick="downloadContactCSV()">
+                        <i class="fas fa-download"></i> Export CSV
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Message</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contactTable">
+                                <tr>
+                                    <td colspan="6" class="text-center">No inquiries yet</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== NEWSLETTER MODULE ===== -->
+            <section id="newsletter" class="module">
+                <div class="module-header">
+                    <h2>Newsletter Subscribers</h2>
+                    <button class="btn btn-secondary" onclick="downloadNewsletterCSV()">
+                        <i class="fas fa-download"></i> Export List
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Subscribed Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="newsletterTable">
+                                <tr>
+                                    <td colspan="3" class="text-center">No subscribers yet</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== SOCIAL MEDIA SETTINGS ===== -->
+            <section id="social" class="module">
+                <div class="module-header">
+                    <h2>Social Media Links</h2>
+                </div>
+
+                <div class="card">
+                    <form id="socialForm">
+                        <div class="form-group">
+                            <label for="instagram">
+                                <i class="fab fa-instagram"></i> Instagram URL
+                            </label>
+                            <input type="url" id="instagram" placeholder="https://instagram.com/yourprofile">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="facebook">
+                                <i class="fab fa-facebook"></i> Facebook URL
+                            </label>
+                            <input type="url" id="facebook" placeholder="https://facebook.com/yourpage">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="twitter">
+                                <i class="fab fa-twitter"></i> Twitter (X) URL
+                            </label>
+                            <input type="url" id="twitter" placeholder="https://twitter.com/yourhandle">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp Number
+                            </label>
+                            <input type="tel" id="whatsapp" placeholder="+91 98765 43210">
+                        </div>
+
+                        <button type="button" class="btn btn-primary" onclick="saveSocialLinks()">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- ===== CUSTOM LINKS GENERATOR ===== -->
+            <section id="links" class="module">
+                <div class="module-header">
+                    <h2>Pricing Links Generator</h2>
+                    <p>Generate custom pricing links with discount options</p>
+                </div>
+
+                <div class="links-generator">
+                    <div class="card">
+                        <h3>Generate New Link</h3>
+                        <form id="linkGeneratorForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="selectPlan">Select Plan</label>
+                                    <select id="selectPlan" required>
+                                        <option value="">Choose a plan...</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="discount">Discount %</label>
+                                    <select id="discount" required>
+                                        <option value="0">No Discount</option>
+                                        <option value="10">10%</option>
+                                        <option value="20">20%</option>
+                                        <option value="30">30%</option>
+                                        <option value="40">40%</option>
+                                        <option value="custom">Custom</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" id="customDiscountGroup" style="display: none;">
+                                    <label for="customDiscount">Custom Amount (%)</label>
+                                    <input type="number" id="customDiscount" min="0" max="100" placeholder="Enter percentage">
+                                </div>
+
+                                <button type="button" class="btn btn-primary" onclick="generatePricingLink()">
+                                    <i class="fas fa-link"></i> Generate
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="card">
+                        <h3>Generated Links</h3>
+                        <div id="generatedLinksList">
+                            <p class="text-center">No links generated yet</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== WHATSAPP INTEGRATION ===== -->
+            <section id="whatsapp" class="module">
+                <div class="module-header">
+                    <h2>WhatsApp Integration</h2>
+                </div>
+
+                <div class="card">
+                    <div class="whatsapp-info">
+                        <h3>Send WhatsApp Messages</h3>
+                        <p>Configure WhatsApp integration and send messages to customers</p>
+
+                        <form id="whatsappForm">
+                            <div class="form-group">
+                                <label for="whatsappApi">WhatsApp API URL</label>
+                                <input type="url" id="whatsappApi" 
+                                    placeholder="https://sensational-faun-1a5a11.netlify.app"
+                                    value="https://sensational-faun-1a5a11.netlify.app">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="whatsappNumber">WhatsApp Number</label>
+                                <input type="tel" id="whatsappNumber" 
+                                    placeholder="+91 98765 43210">
+                            </div>
+
+                            <button type="button" class="btn btn-primary" onclick="saveWhatsAppConfig()">
+                                <i class="fas fa-save"></i> Save Configuration
+                            </button>
+                        </form>
+
+                        <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid var(--border-color);">
+                            <h3>Send Message to Customer</h3>
+                            <form id="whatsappSendForm">
+                                <div class="form-group">
+                                    <label for="selectCustomer">Select Customer</label>
+                                    <select id="selectCustomer" required>
+                                        <option value="">Choose customer...</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="whatsappMessage">Message</label>
+                                    <textarea id="whatsappMessage" rows="4" 
+                                        placeholder="Enter your message..."></textarea>
+                                </div>
+
+                                <button type="button" class="btn btn-primary" onclick="sendWhatsAppMessage()">
+                                    <i class="fab fa-whatsapp"></i> Send WhatsApp
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- ===== MODALS ===== -->
+
+    <!-- Pricing Modal -->
+    <div class="modal" id="pricingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add/Edit Pricing Plan</h3>
+                <button class="close-btn" onclick="closeModal('pricingModal')">×</button>
+            </div>
+            <form id="pricingForm">
+                <div class="form-group">
+                    <label for="planName">Plan Name *</label>
+                    <input type="text" id="planName" required placeholder="e.g., Basic, Pro, Enterprise">
+                </div>
+
+                <div class="form-group">
+                    <label for="planPrice">Price (₹) *</label>
+                    <input type="number" id="planPrice" required placeholder="0" step="0.01">
+                </div>
+
+                <div class="form-group">
+                    <label for="planDescription">Description *</label>
+                    <textarea id="planDescription" required placeholder="Describe your plan..." rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="planFeatures">Features (one per line) *</label>
+                    <textarea id="planFeatures" required placeholder="Feature 1&#10;Feature 2&#10;Feature 3" rows="4"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('pricingModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Plan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Blog Modal -->
+    <div class="modal" id="blogModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add/Edit Blog Post</h3>
+                <button class="close-btn" onclick="closeModal('blogModal')">×</button>
+            </div>
+            <form id="blogForm">
+                <div class="form-group">
+                    <label for="blogKeyword">Keyword *</label>
+                    <input type="text" id="blogKeyword" required placeholder="SEO keyword">
+                </div>
+
+                <div class="form-group">
+                    <label for="blogHeading">Heading *</label>
+                    <input type="text" id="blogHeading" required placeholder="Blog title">
+                </div>
+
+                <div class="form-group">
+                    <label for="blogDescription">Description *</label>
+                    <textarea id="blogDescription" required placeholder="Full blog content..." rows="6"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('blogModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Blog</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Team Modal -->
+    <div class="modal" id="teamModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add/Edit Team Member</h3>
+                <button class="close-btn" onclick="closeModal('teamModal')">×</button>
+            </div>
+            <form id="teamForm">
+                <div class="form-group">
+                    <label for="teamName">Name *</label>
+                    <input type="text" id="teamName" required placeholder="Full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="teamDesignation">Designation *</label>
+                    <input type="text" id="teamDesignation" required placeholder="Job title">
+                </div>
+
+                <div class="form-group">
+                    <label for="teamPhoto">Photo</label>
+                    <input type="file" id="teamPhoto" accept="image/*">
+                    <div id="teamPhotoPreview" class="photo-preview"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="teamInstagram">Instagram</label>
+                    <input type="url" id="teamInstagram" placeholder="https://instagram.com/...">
+                </div>
+
+                <div class="form-group">
+                    <label for="teamFacebook">Facebook</label>
+                    <input type="url" id="teamFacebook" placeholder="https://facebook.com/...">
+                </div>
+
+                <div class="form-group">
+                    <label for="teamTwitter">Twitter (X)</label>
+                    <input type="url" id="teamTwitter" placeholder="https://twitter.com/...">
+                </div>
+
+                <div class="form-group">
+                    <label for="teamWhatsapp">WhatsApp</label>
+                    <input type="tel" id="teamWhatsapp" placeholder="+91 98765 43210">
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('teamModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Member</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Testimonial Modal -->
+    <div class="modal" id="testimonialModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add/Edit Testimonial</h3>
+                <button class="close-btn" onclick="closeModal('testimonialModal')">×</button>
+            </div>
+            <form id="testimonialForm">
+                <div class="form-group">
+                    <label for="testimonialName">Name *</label>
+                    <input type="text" id="testimonialName" required placeholder="Customer name">
+                </div>
+
+                <div class="form-group">
+                    <label for="testimonialPosition">Position *</label>
+                    <input type="text" id="testimonialPosition" required placeholder="Job title/Company">
+                </div>
+
+                <div class="form-group">
+                    <label for="testimonialComment">Comment *</label>
+                    <textarea id="testimonialComment" required placeholder="What they said..." rows="4"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="testimonialRating">Rating</label>
+                    <select id="testimonialRating">
+                        <option value="5">⭐⭐⭐⭐⭐ (5 Stars)</option>
+                        <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
+                        <option value="3">⭐⭐⭐ (3 Stars)</option>
+                        <option value="2">⭐⭐ (2 Stars)</option>
+                        <option value="1">⭐ (1 Star)</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('testimonialModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Testimonial</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="confirmDeleteModal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h3>Confirm Delete</h3>
+                <button class="close-btn" onclick="closeModal('confirmDeleteModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <p id="deleteConfirmText">Are you sure you want to delete this item? This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('confirmDeleteModal')">Cancel</button>
+                <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Status Update Modal -->
+    <div class="modal" id="updateStatusModal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h3>Update Status</h3>
+                <button class="close-btn" onclick="closeModal('updateStatusModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="statusSelect">New Status</label>
+                    <select id="statusSelect">
+                        <option value="pending">Pending</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('updateStatusModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="updateCustomerStatus()">Update</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Download Invoice Modal -->
+    <div class="modal" id="invoiceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Invoice Preview</h3>
+                <button class="close-btn" onclick="closeModal('invoiceModal')">×</button>
+            </div>
+            <div class="modal-body" id="invoiceContent">
+                <!-- Invoice content will be generated here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('invoiceModal')">Close</button>
+                <button class="btn btn-primary" onclick="printInvoice()">Print/Save PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/modules/dashboard.js"></script>
+    <script src="js/modules/pricing.js"></script>
+    <script src="js/modules/blog.js"></script>
+    <script src="js/modules/team.js"></script>
+    <script src="js/modules/testimonials.js"></script>
+    <script src="js/modules/customers.js"></script>
+    <script src="js/modules/contact.js"></script>
+    <script src="js/modules/newsletter.js"></script>
+    <script src="js/modules/social.js"></script>
+    <script src="js/modules/links.js"></script>
+    <script src="js/modules/whatsapp.js"></script>
+</body>
+</html>

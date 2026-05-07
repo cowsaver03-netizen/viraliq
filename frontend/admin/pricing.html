@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Plans - Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/base.css">
+        <link rel="stylesheet" href="css/modules/pricing.css">
+        <link rel="stylesheet" href="css/components/badges.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-rocket"></i>
+                <span>Admin Panel</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="nav-item" data-module="dashboard">
+                    <a href="dashboard.html" class="nav-link">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item active" data-module="pricing">
+                    <a href="pricing.html" class="nav-link">
+                        <i class="fas fa-tags"></i>
+                        <span>Pricing Plans</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-module="blog">
+                    <a href="blog.html" class="nav-link">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Blog Management</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-module="team">
+                    <a href="team.html" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        <span>Team Members</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-module="testimonials">
+                    <a href="testimonials.html" class="nav-link">
+                        <i class="fas fa-star"></i>
+                        <span>Testimonials</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-module="customers">
+                    <a href="customers.html" class="nav-link">
+                        <i class="fas fa-users-circle"></i>
+                        <span>Customer Portal</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-module="contact">
+                    <a href="contact.html" class="nav-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contact Inquiries</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-module="newsletter">
+                    <a href="newsletter.html" class="nav-link">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Newsletter</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-module="social">
+                    <a href="social.html" class="nav-link">
+                        <i class="fas fa-share-nodes"></i>
+                        <span>Social Media</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-module="links">
+                    <a href="links.html" class="nav-link">
+                        <i class="fas fa-link"></i>
+                        <span>Pricing Links</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-module="whatsapp">
+                    <a href="whatsapp.html" class="nav-link">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp Config</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Navbar -->
+        <header class="top-navbar">
+            <div class="navbar-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Pricing Plans Management</h1>
+            </div>
+            <div class="navbar-right">
+                <div class="search-box">
+                    <input type="text" placeholder="Search...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="user-menu">
+                    <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                    <span class="user-name">Admin User</span>
+                    <button class="logout-btn" onclick="window.location.href='../'">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <div class="content">
+            <div class="module-header">
+                <h2>Pricing Plans Management</h2>
+                <button class="btn btn-primary" onclick="openModal('pricingModal')">
+                    <i class="fas fa-plus"></i> Add New Plan
+                </button>
+            </div>
+
+            <div class="pricing-grid" id="pricingGrid">
+                <!-- Pricing cards will be populated here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Pricing Modal -->
+    <div class="modal" id="pricingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add/Edit Pricing Plan</h3>
+                <button class="close-btn" onclick="closeModal('pricingModal')">×</button>
+            </div>
+            <form id="pricingForm">
+                <div class="form-group">
+                    <label for="planName">Plan Name *</label>
+                    <input type="text" id="planName" required placeholder="e.g., Basic, Pro, Enterprise">
+                </div>
+
+                <div class="form-group">
+                    <label for="planPrice">Price (₹) *</label>
+                    <input type="number" id="planPrice" required placeholder="0" step="0.01">
+                </div>
+
+                <div class="form-group">
+                    <label for="planDescription">Description *</label>
+                    <textarea id="planDescription" required placeholder="Describe your plan..." rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="planFeatures">Features (one per line) *</label>
+                    <textarea id="planFeatures" required placeholder="Feature 1&#10;Feature 2&#10;Feature 3" rows="4"></textarea>
+                </div>
+
+                
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('pricingModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Plan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="confirmDeleteModal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h3>Confirm Delete</h3>
+                <button class="close-btn" onclick="closeModal('confirmDeleteModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <p id="deleteConfirmText">Are you sure you want to delete this item? This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('confirmDeleteModal')">Cancel</button>
+                <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+     <script src="js/modules/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/modules/pricing.js"></script>
+</body>
+</html>

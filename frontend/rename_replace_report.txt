@@ -1,0 +1,23 @@
+﻿RENAMED_FILE_EXISTS=True
+RENAMED_OLD_EXISTS=False
+CHANGED_FILES_COUNT=18
+CHANGED_FILES_LIST=
+E:\KK OFFICE WORK\Outer Website\gencyo-html - Copy - Copy\about.html
+E:\KK OFFICE WORK\Outer Website\gencyo-html - Copy - Copy\blog.html
+E:\KK OFFICE WORK\Outer Website\gencyo-html - Copy - Copy\blogs-details.html    
+E:\KK OFFICE WORK\Outer Website\gencyo-html - Copy - Copy\css\index-6c169ce7b3f3e8.html
+E:\KK OFFICE WORK\Outer Website\gencyo-html - Copy - Copy\IMPLEMENTATION_SUMMARY.md
+E:\KK OFFICE WORK\Outer Website\gencyo-html - Copy - Copy\IMPLEMENTATION_SUMMARY_PULL_TO_REFRESH.md
+E:\KK OFFICE WORK\Outer Website\gencyo-html - Copy - Copy\index.html
+E:\KK OFFICE WORK\Outer Website\gencyo-html - Copy - Copy\page-contact.html     
+E:\KK OFFICE WORK\Outer Website\gencyo-html - Copy - Copy\page-faq.html
+E:\KK OFFICE WORK\Outer Website\gencyo-html - Copy - Copy\page-pricing.html     
+E:\KK OFFICE WORK\Outer Website\gencyo-html - Copy - Copy\page-project-details.html
+E:\KK OFFICE WORK\Outer Website\gencyo-html - Copy - Copy\page-projects.html    
+E:\KK OFFICE WORK\Outer Website\gencyo-html - Copy - Copy\page-service-details.html
+E:\KK OFFICE WORK\Outer Website\gencyo-html - Copy - Copy\page-services.html    
+E:\KK OFFICE WORK\Outer Website\gencyo-html - Copy - Copy\page-team.html        
+E:\KK OFFICE WORK\Outer Website\gencyo-html - Copy - Copy\page-testimonial.html 
+E:\KK OFFICE WORK\Outer Website\gencyo-html - Copy - Copy\PULL_TO_REFRESH_CHECKLIST.md
+E:\KK OFFICE WORK\Outer Website\gencyo-html - Copy - Copy\PULL_TO_REFRESH_GUIDE.md
+REMAINING_MATCHES_COUNT=0

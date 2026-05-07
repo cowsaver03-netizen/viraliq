@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Management - Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/base.css">
+        <link rel="stylesheet" href="css/modules/blog.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-rocket"></i>
+                <span>Admin Panel</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fas fa-chart-line"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a href="pricing.html" class="nav-link"><i class="fas fa-tags"></i><span>Pricing Plans</span></a></li>
+                <li class="nav-item active"><a href="blog.html" class="nav-link"><i class="fas fa-newspaper"></i><span>Blog Management</span></a></li>
+                <li class="nav-item"><a href="team.html" class="nav-link"><i class="fas fa-users"></i><span>Team Members</span></a></li>
+                <li class="nav-item"><a href="testimonials.html" class="nav-link"><i class="fas fa-star"></i><span>Testimonials</span></a></li>
+                <li class="nav-item"><a href="customers.html" class="nav-link"><i class="fas fa-users-circle"></i><span>Customer Portal</span></a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i><span>Contact Inquiries</span></a></li>
+                <li class="nav-item"><a href="newsletter.html" class="nav-link"><i class="fas fa-paper-plane"></i><span>Newsletter</span></a></li>
+                <li class="nav-item"><a href="social.html" class="nav-link"><i class="fas fa-share-nodes"></i><span>Social Media</span></a></li>
+                <li class="nav-item"><a href="links.html" class="nav-link"><i class="fas fa-link"></i><span>Pricing Links</span></a></li>
+                <li class="nav-item"><a href="whatsapp.html" class="nav-link"><i class="fab fa-whatsapp"></i><span>WhatsApp Config</span></a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-navbar">
+            <div class="navbar-left">
+                <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+                <h1 class="page-title">Blog Management</h1>
+            </div>
+            <div class="navbar-right">
+                <div class="user-menu">
+                    <!-- <img src="https://via.placeholder.com/40" alt="User" class="user-avatar"> -->
+                    <button class="logout-btn" onclick="window.location.href='../'"><i class="fas fa-sign-out-alt"></i></button>
+                </div>
+            </div>
+        </header>
+
+        <div class="content">
+            <div class="module-header">
+                <h2>Blog Management</h2>
+                <button class="btn btn-primary" onclick="openModal('blogModal')"><i class="fas fa-plus"></i> Add New Blog</button>
+            </div>
+
+            <div class="card">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Title</th>
+                                <th>Keyword</th>
+                                <th>Description Preview</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="blogTable">
+                            <tr><td colspan="6" class="text-center">No blogs yet</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal" id="blogModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add/Edit Blog Post</h3>
+                <button class="close-btn" onclick="closeModal('blogModal')">×</button>
+            </div>
+            <form id="blogForm">
+                <div class="form-group">
+                    <label for="blogKeyword">Keyword *</label>
+                    <input type="text" id="blogKeyword" name="keyword" required placeholder="SEO keyword">
+                </div>
+                <div class="form-group">
+                    <label for="blogHeading">Heading *</label>
+                    <input type="text" id="blogHeading" name="title" required placeholder="Blog title">
+                </div>
+                <div class="form-group">
+                    <label for="blogImage">Blog Image</label>
+                    <input type="file" id="blogImage" name="image" accept="image/*">
+                    <div class="photo-preview" id="blogImagePreview">
+                        <span class="text-muted">No image selected</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="blogDescription">Description *</label>
+                    <textarea id="blogDescription" name="description" required placeholder="Full blog content..." rows="6"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('blogModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Blog</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="confirmDeleteModal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header"><h3>Confirm Delete</h3><button class="close-btn" onclick="closeModal('confirmDeleteModal')">×</button></div>
+            <div class="modal-body"><p id="deleteConfirmText">Are you sure?</p></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('confirmDeleteModal')">Cancel</button>
+                <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/modules/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/modules/blog.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', () => renderBlogTable());</script>
+</body>
+</html>

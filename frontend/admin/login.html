@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Gencyo Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/modules/auth.css">
+</head>
+<body class="auth-page">
+    <main class="auth-shell">
+        <section class="auth-visual">
+            <div class="auth-copy">
+                <div class="auth-badge"><i class="fas fa-shield-halved"></i> Secure Admin Access</div>
+                <h1>Welcome back to the admin panel.</h1>
+                <p>Login karke dashboard, blogs, leads aur complete admin tools ko safely manage karo.</p>
+                <div class="auth-features">
+                    <div class="auth-feature">
+                        <strong>Quick Access</strong>
+                        Fast login for daily admin work.
+                    </div>
+                    <div class="auth-feature">
+                        <strong>Password Reset</strong>
+                        Forgot ho gaya ho to easily recover karo.
+                    </div>
+                    <div class="auth-feature">
+                        <strong>Protected Area</strong>
+                        Authenticated users only.
+                    </div>
+                    <div class="auth-feature">
+                        <strong>Unified Session</strong>
+                        One login across admin pages.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="auth-panel">
+            <div class="auth-card">
+                <h2>Admin Login</h2>
+                <p class="text-muted">Username/email aur password se sign in karo.</p>
+
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="identifier">Username or Email</label>
+                        <input type="text" id="identifier" placeholder="admin or admin@gencyo.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+
+                    <div class="auth-options">
+                        <label>
+                            <input type="checkbox" id="rememberMe">
+                            Remember me
+                        </label>
+                        <a href="forgot-password.html" class="auth-link">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="loginButton" style="width: 100%;">
+                        <i class="fas fa-right-to-bracket"></i>
+                        Sign In
+                    </button>
+                </form>
+
+                <div class="auth-note">
+                    Default demo credentials: <strong>admin</strong> / <strong>admin123</strong>
+                </div>
+                <p class="auth-help">Need help? Reset the password from the forgot password page.</p>
+            </div>
+        </section>
+    </main>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/notifications.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

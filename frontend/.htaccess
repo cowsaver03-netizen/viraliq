@@ -1,0 +1,80 @@
+# ----------------------------------
+# DEFAULT FILE
+# ----------------------------------
+DirectoryIndex index.html
+
+# ----------------------------------
+# REWRITE ENGINE
+# ----------------------------------
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# 0. FORCE HTTPS
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 1. ENFORCE www (redirect non-www to www)
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteCond %{HTTP_HOST} !^$ [NC]
+RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Compatibility: if a cached page requests assets like /contact/css/style.css,
+# serve them from root (/css/style.css) instead of returning 404.
+RewriteRule ^[^/]+/(css|js|images|fonts)/(.+)$ /$1/$2 [L,NC]
+
+# 1. Redirect .html → clean URL
+RewriteCond %{THE_REQUEST} \s/([^.]+)\.html [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# 2. Skip real files & folders
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# 3. Clean URL → .html
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+</IfModule>
+
+# ----------------------------------
+# FORCE NO CACHE (HTML, CSS, JS)
+# ----------------------------------
+<IfModule mod_headers.c>
+<FilesMatch "\.(html|htm|css|js)$">
+Header set Cache-Control "no-cache, no-store, must-revalidate"
+Header set Pragma "no-cache"
+Header set Expires 0
+</FilesMatch>
+</IfModule>
+
+# ----------------------------------
+# EXPIRES (0 CACHE)
+# ----------------------------------
+<IfModule mod_expires.c>
+ExpiresActive On
+
+# HTML
+ExpiresByType text/html "access plus 0 seconds"
+
+# CSS & JS
+ExpiresByType text/css "access plus 0 seconds"
+ExpiresByType application/javascript "access plus 0 seconds"
+ExpiresByType text/javascript "access plus 0 seconds"
+
+# Images (optional – keep cached)
+ExpiresByType image/x-icon "access plus 1 year"
+ExpiresByType image/png "access plus 1 year"
+ExpiresByType image/jpeg "access plus 1 year"
+ExpiresByType image/webp "access plus 1 year"
+
+</IfModule>
+
+# ----------------------------------
+# GZIP COMPRESSION (IMPORTANT)
+# ----------------------------------
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json
+</IfModule>
