@@ -11,6 +11,7 @@ const teamRoutes = require('./routes/team.Routes');
 const socialRoutes = require('./routes/social.Routes');
 const contactRoutes = require('./routes/contact.Routes');
 const pricingRoutes = require('./routes/pricing.Routes');
+const customerRoutes = require("./routes/customer.Routes");
 
 
 
@@ -51,9 +52,14 @@ app.use('/api/team', teamRoutes);
 app.use('/api/social', socialRoutes);
 app.use('/api/contact', contactRoutes);
 app.use("/api/pricing", pricingRoutes);
+app.use("/api/customers", customerRoutes);
 
 app.get('/', (req, res) => {
     res.send('API is running...');
+});
+
+app.get("/ping", (req, res) => {
+  res.status(200).send("Server is alive");
 });
 
 
