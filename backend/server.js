@@ -19,12 +19,14 @@ const customerRoutes = require("./routes/customer.Routes");
 connectDB();
 
 const allowedOrigins = [
-  process.env.WEBSITE_URL || "https://viraliq.ai",
-  process.env.ADMIN_URL || "https://www.admin.viraliq.ai",
+  process.env.WEBSITE_URL,
+  process.env.WEBSITE_URL_WWW,
+  process.env.ADMIN_URL,
+  process.env.ADMIN_URL_WWW,
   "http://localhost:5500",
   "http://127.0.0.1:5500",
   "http://127.0.0.1:5501"
-];
+].filter(Boolean);
 
 app.use(cors({
   origin: function (origin, callback) {
