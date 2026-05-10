@@ -86,9 +86,10 @@
                                             <li><a href="blogs-details.html"></a></li>
                                         </ul>
                                         <h3 class="blog-details__title" data-blog-field="title">How a Website Turns Visitors into Qualified Leads</h3>
-                                        <p class="blog-details__text-2 mb-3" data-blog-field="p1">A strong website does more than display information. It guides visitors toward a clear action, builds trust quickly, and captures interest before attention drops. When your structure, copy, and calls-to-action are aligned, the website becomes a lead generation system instead of a static brochure.</p>
-                                        <p class="blog-details__text-2 mb-3" data-blog-field="p2">The most effective pages focus on one problem, one promise, and one next step. Clean navigation, fast load times, relevant service sections, and visible contact options all reduce friction. That is what helps a business turn traffic from ads, search, or social media into real enquiries.</p>
-                                        <p class="blog-details__text-2 mb-3" data-blog-field="p3">This is especially important for service businesses that depend on consistent inbound leads. A clear website experience improves conversion rates, makes follow-up easier, and supports scaling without redesigning the whole brand every time the business grows.</p>
+                                        <!-- <p class="blog-details__text-2 mb-3" data-blog-field="p1"></p>
+                                        <p class="blog-details__text-2 mb-3" data-blog-field="p2"></p>
+                                        <p class="blog-details__text-2 mb-3" data-blog-field="p3"></p> -->
+                                        <div data-blog-field="p1"></div>
                                     </div>
                                     
                                     
@@ -163,6 +164,7 @@
     </div>
     <!-- End Page Wrapper -->
     <script src="js/layout-loader.js"></script>
+    <script src="js/pages/config.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/pages/config.js"></script>
     <script src="js/pages/blogs-details.js"></script>
@@ -191,199 +193,7 @@
     <script src="js/mixitup.js"></script>
     <script src="js/script.js"></script>
     <script src="js/script-gsap.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var blogData = {
-                'website-funnel': {
-                    day: '12',
-                    month: 'Apr',
-                    title: 'Why Your Website Needs a Strong Lead Funnel',
-                    image: 'images/blog1.png',
-                    p1: 'A website should not just look polished. It should guide visitors into a clear lead funnel that captures attention, answers objections, and gives them one obvious next step.',
-                    p2: 'When your headline, service sections, and contact paths work together, the website starts behaving like a sales system. That is what turns traffic into qualified enquiries instead of random visits.',
-                    p3: 'For service businesses, this usually means stronger calls-to-action, better page structure, and a message that matches the exact problem your audience wants solved.',
-                    tag1: 'Funnel',
-                    tag2: 'Website',
-                    
-                    comment1_name: 'Kevin Martin',
-                    comment1_text: 'This makes the lead journey much easier to understand and act on.',
-                    comment2_name: 'Sarah Albert',
-                    comment2_text: 'The funnel-first structure feels much closer to how buyers actually move.',
-                    latest: [
-                        { href: '/blogs-details?post=landing-pages', title: 'Landing Pages That Turn Traffic into Enquiries' },
-                        { href: '/blogs-details?post=crm-automation', title: 'CRM Automation That Improves Follow-Up Rates' },
-                        { href: '/blogs-details?post=seo-ads', title: 'SEO and Paid Ads Working Together for Growth' }
-                    ],
-                    categories: ['Lead Generation', 'Website Strategy', 'SEO', 'CRM Automation', 'Conversion Copy', 'Performance Marketing']
-                },
-                'landing-pages': {
-                    day: '08',
-                    month: 'Apr',
-                    title: 'Landing Pages That Turn Traffic into Enquiries',
-                    image: 'images/blog2.jpg',
-                    p1: 'Landing pages work best when they focus on one offer and one audience. The page should remove distractions and guide the visitor toward a single conversion action.',
-                    p2: 'Good landing pages use simple copy, strong proof, and a visible form or CTA. That keeps the user moving and reduces the chances of drop-off before the lead is captured.',
-                    p3: 'For paid traffic, this is where most of the conversion work happens. Better landing pages usually mean lower acquisition cost and higher quality enquiries.',
-                    tag1: 'Landing Page',
-                    tag2: 'Conversion',
-                   
-                    comment1_name: 'Mason Clark',
-                    comment1_text: 'The message is clearer when the page is built around one conversion goal.',
-                    comment2_name: 'Ella Brown',
-                    comment2_text: 'Simple layouts often convert better than crowded pages.',
-                    latest: [
-                        { href: '/blogs-details?post=website-funnel', title: 'Why Your Website Needs a Strong Lead Funnel' },
-                        { href: '/blogs-details?post=website-copy', title: 'Website Copy That Helps Visitors Trust Your Brand' },
-                        { href: '/blogs-details?post=service-pages', title: 'How to Build Service Pages That Convert' }
-                    ],
-                    categories: ['Landing Pages', 'Lead Generation', 'Copywriting', 'Website Strategy', 'Performance Marketing', 'CRO']
-                },
-                'crm-automation': {
-                    day: '15',
-                    month: 'Apr',
-                    title: 'CRM Automation That Improves Follow-Up Rates',
-                    image: 'images/blog3.jpeg',
-                    p1: 'CRM automation helps you respond faster and keep every lead organized. Instead of relying on manual follow-up, the system handles reminders, messages, and lead movement automatically.',
-                    p2: 'That matters because speed is often the difference between winning and losing a lead. A business that replies quickly and consistently usually creates more booked calls and more sales conversations.',
-                    p3: 'The real benefit is not just saving time. It is building a process that makes the sales team more dependable and helps the business scale without losing control of the pipeline.',
-                    tag1: 'CRM',
-                    tag2: 'Automation',
-                    
-                    comment1_name: 'Ava Wilson',
-                    comment1_text: 'Automation makes lead handling much cleaner and faster.',
-                    comment2_name: 'Noah Davis',
-                    comment2_text: 'A proper CRM workflow cuts a lot of wasted manual work.',
-                    latest: [
-                        { href: '/blogs-details?post=website-funnel', title: 'Why Your Website Needs a Strong Lead Funnel' },
-                        { href: '/blogs-details?post=landing-pages', title: 'Landing Pages That Turn Traffic into Enquiries' },
-                        { href: '/blogs-details?post=seo-ads', title: 'SEO and Paid Ads Working Together for Growth' }
-                    ],
-                    categories: ['CRM Automation', 'Lead Nurturing', 'Website Strategy', 'Sales Process', 'Performance Marketing', 'Conversion']
-                },
-                'website-copy': {
-                    day: '21',
-                    month: 'Apr',
-                    title: 'Website Copy That Helps Visitors Trust Your Brand',
-                    image: 'images/blog4.jpg',
-                    p1: 'Website copy is what tells the visitor why your business matters. If the words are unclear, even a well-designed site can feel weak or generic.',
-                    p2: 'Trust-building copy should explain the problem, promise the outcome, and show why your business is the right fit. That keeps people reading and gives them confidence to take action.',
-                    p3: 'Strong copy is especially important for service pages, where the user needs reassurance before reaching out. It should feel specific, helpful, and easy to scan.',
-                    tag1: 'Copywriting',
-                    tag2: 'Trust',
-                    
-                    comment1_name: 'Liam Moore',
-                    comment1_text: 'Clear copy definitely makes the brand feel more trustworthy.',
-                    comment2_name: 'Sophia Taylor',
-                    comment2_text: 'The wording now feels more direct and useful.',
-                    latest: [
-                        { href: '/blogs-details?post=landing-pages', title: 'Landing Pages That Turn Traffic into Enquiries' },
-                        { href: '/blogs-details?post=service-pages', title: 'How to Build Service Pages That Convert' },
-                        { href: '/blogs-details?post=crm-automation', title: 'CRM Automation That Improves Follow-Up Rates' }
-                    ],
-                    categories: ['Copywriting', 'Website Strategy', 'Lead Generation', 'Service Pages', 'Conversion', 'Brand Trust']
-                },
-                'service-pages': {
-                    day: '27',
-                    month: 'Apr',
-                    title: 'How to Build Service Pages That Convert',
-                    image: 'images/blog5.jpg',
-                    p1: 'A service page should answer the visitorÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢s biggest questions fast. What do you do, who is it for, and what should they do next are the core things that matter.',
-                    p2: 'The layout should support that answer with simple sections, proof, and a clear call-to-action. If the page makes people think too much, conversions usually drop.',
-                    p3: 'Good service pages feel focused and relevant. They reduce friction by speaking directly to the audience and showing exactly how the service solves a real business problem.',
-                    tag1: 'Service Page',
-                    tag2: 'CRO',
-                    
-                    comment1_name: 'Ethan Hall',
-                    comment1_text: 'A clean service page structure makes decision-making much easier.',
-                    comment2_name: 'Isabella Lee',
-                    comment2_text: 'This is the kind of page that can actually support sales.',
-                    latest: [
-                        { href: '/blogs-details?post=website-funnel', title: 'Why Your Website Needs a Strong Lead Funnel' },
-                        { href: '/blogs-details?post=website-copy', title: 'Website Copy That Helps Visitors Trust Your Brand' },
-                        { href: '/blogs-details?post=seo-ads', title: 'SEO and Paid Ads Working Together for Growth' }
-                    ],
-                    categories: ['Service Pages', 'Website Strategy', 'CRO', 'Lead Generation', 'SEO', 'Performance Marketing']
-                },
-                'seo-ads': {
-                    day: '30',
-                    month: 'Apr',
-                    title: 'SEO and Paid Ads Working Together for Growth',
-                    image: 'images/blog6.jpg',
-                    p1: 'SEO and paid ads are strongest when they support each other. SEO builds long-term visibility, while ads bring immediate traffic and faster testing.',
-                    p2: 'When both channels point to the same offer and message, you get a clearer growth system. That makes it easier to learn what converts and where to invest more budget.',
-                    p3: 'This combined approach gives businesses more predictable traffic, more data, and more control over how leads enter the funnel over time.',
-                    tag1: 'SEO',
-                    tag2: 'Ads',
-                    
-                    comment1_name: 'Oliver King',
-                    comment1_text: 'The SEO plus ads strategy gives the best of both short and long term growth.',
-                    comment2_name: 'Amelia Scott',
-                    comment2_text: 'This is much more practical than treating channels separately.',
-                    latest: [
-                        { href: '/blogs-details?post=website-funnel', title: 'Why Your Website Needs a Strong Lead Funnel' },
-                        { href: '/blogs-details?post=landing-pages', title: 'Landing Pages That Turn Traffic into Enquiries' },
-                        { href: '/blogs-details?post=crm-automation', title: 'CRM Automation That Improves Follow-Up Rates' }
-                    ],
-                    categories: ['SEO', 'Paid Ads', 'Website Strategy', 'Lead Generation', 'Performance Marketing', 'CRO']
-                }
-            };
-
-            function setText(selector, value) {
-                var element = document.querySelector(selector);
-                if (element && typeof value === 'string') {
-                    element.textContent = value;
-                }
-            }
-
-            function setHtml(selector, value) {
-                var element = document.querySelector(selector);
-                if (element && typeof value === 'string') {
-                    element.innerHTML = value;
-                }
-            }
-
-            var postKey = new URLSearchParams(window.location.search).get('post') || 'website-funnel';
-            var post = blogData[postKey] || blogData['website-funnel'];
-
-            var image = document.querySelector('[data-blog-field="image"]');
-            if (image) {
-                image.src = post.image;
-            }
-
-            setText('[data-blog-field="day"]', post.day);
-            setText('[data-blog-field="month"]', post.month);
-            setText('[data-blog-field="comments"]', post.comments);
-            setText('[data-blog-field="title"]', post.title);
-            setText('[data-blog-field="p1"]', post.p1);
-            setText('[data-blog-field="p2"]', post.p2);
-            setText('[data-blog-field="p3"]', post.p3);
-            setText('[data-blog-field="tag1"]', post.tag1);
-            setText('[data-blog-field="tag2"]', post.tag2);
-            setText('[data-blog-field="prev"]', post.prev);
-            setText('[data-blog-field="next"]', post.next);
-            setText('[data-blog-field="comment1_name"]', post.comment1_name);
-            setText('[data-blog-field="comment1_text"]', post.comment1_text);
-            setText('[data-blog-field="comment2_name"]', post.comment2_name);
-            setText('[data-blog-field="comment2_text"]', post.comment2_text);
-
-            var latestLinks = document.querySelectorAll('[data-blog-latest]');
-            latestLinks.forEach(function(link) {
-                var index = parseInt(link.getAttribute('data-blog-latest'), 10);
-                if (post.latest[index]) {
-                    link.href = post.latest[index].href;
-                    link.textContent = post.latest[index].title;
-                }
-            });
-
-            var categoryLinks = document.querySelectorAll('[data-blog-category]');
-            categoryLinks.forEach(function(link) {
-                var index = parseInt(link.getAttribute('data-blog-category'), 10);
-                if (post.categories[index]) {
-                    link.childNodes[0].nodeValue = post.categories[index];
-                }
-            });
-        });
-    </script>
+    
 
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/jquery.form.min.js"></script>

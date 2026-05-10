@@ -1,6 +1,4 @@
-
-
-    const { BASE_URL, API } = window.APP_CONFIG;
+     const { BASE_URL, API } = window.APP_CONFIG;
     const API_URL = BASE_URL + API.TESTIMONIALS;
     let editingId = null
 

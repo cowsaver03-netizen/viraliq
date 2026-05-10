@@ -1,96 +1,140 @@
 (function () {
-  
 
-  const BASE_URL = "http://localhost:5000"; // change if needed
-  const API_URL = `${BASE_URL}/api/blogs`;
+  const { BASE_URL, API } = window.APP_CONFIG;
+  const API_URL = BASE_URL + API.BLOGS;
 
-  document.addEventListener("DOMContentLoaded", function () {
-    loadBlogs();
+  document.addEventListener("DOMContentLoaded", () => {
+    loadBlogDetails();
   });
 
-  async function loadBlogs() {
+  async function loadBlogDetails() {
+
     try {
+
+      const params = new URLSearchParams(window.location.search);
+      const blogId = params.get("id");
+
+      if (!blogId) return;
+
       const res = await fetch(API_URL);
       const blogs = await res.json();
 
-      const row = document.querySelector(".blog-section .row");
+      const currentBlog = blogs.find(blog => blog._id === blogId);
 
-      if (!row) return;
-
-      row.innerHTML = "";
-
-      if (!blogs.length) {
-        row.innerHTML = `
-          <div class="col-12 text-center">
-            <h4>No Blogs Found</h4>
-          </div>
-        `;
+      if (!currentBlog) {
+        console.log("Blog not found");
         return;
       }
 
-      blogs.forEach((blog, index) => {
-        const delay = (index + 1) / 10;
+      // =========================
+      // MAIN BLOG
+      // =========================
 
-        const slug = createSlug(blog.title);
+      // Image
+      const image = document.querySelector('[data-blog-field="image"]');
 
-        const image = blog.image
-          ? `${blog.image}`
-          : "images/default-blog.jpg";
+      if (image) {
+        image.src = currentBlog.image;
+        image.alt = currentBlog.title;
+      }
 
-        row.innerHTML += `
-          <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".${index + 1}s">
-            <div class="blog-box">
-              <div class="inner-box">
+      // Title
+      const title = document.querySelector('[data-blog-field="title"]');
 
-                <div class="image-box">
-                  <img src="${image}" alt="${blog.title}">
-                  <img src="${image}" alt="${blog.title}">
-                </div>
+      if (title) {
+        title.textContent = currentBlog.title;
+      }
 
-                <div class="content-box">
+      // Description
+      const description = document.querySelector('[data-blog-field="p1"]');
 
-                  <a href="blogs-details.html?id=${blog._id}" class="post-text">
-                    ${blog.keyword || "Blog"}
-                  </a>
+      if (description) {
+        description.innerHTML = formatDescription(currentBlog.description);
+      }
 
-                  <h4 class="title">
-                    <a href="blogs-details.html?id=${blog._id}">
-                      ${blog.title}
-                    </a>
-                  </h4>
+      // Keyword / Category
+      const categoryBox = document.querySelector(".sidebar__category-list");
 
-                  <a href="blogs-details.html?id=${blog._id}" class="arrow-link">
-                    Read More
-
-                    <svg width="13" height="12" viewBox="0 0 13 12" fill="none"
-                      xmlns="http://www.w3.org/2000/svg">
-
-                      <path
-                        d="M0 5.60006L10.5 5.60006M12.8353 5.61358C10.6569 5.48049 6.3 6.41212 6.3 11.2034M12.8353 5.58981C10.6569 5.7229 6.3 4.79127 6.3 0"
-                        stroke="white"
-                        stroke-width="1.5"
-                      />
-                    </svg>
-
-                  </a>
-
-                </div>
-              </div>
-            </div>
-          </div>
+      if (categoryBox) {
+        categoryBox.innerHTML = `
+          <li class="active">
+            <a href="#">
+              ${currentBlog.keyword || "Blog"}
+              <span class="icon-right-arrow"></span>
+            </a>
+          </li>
         `;
-      });
+      }
+
+      // =========================
+      // LATEST BLOGS
+      // =========================
+
+      const latestContainer = document.querySelector(".sidebar__post-list");
+
+      if (latestContainer) {
+
+        const latestBlogs = blogs
+          .filter(blog => blog._id !== currentBlog._id)
+          .slice(0, 3);
+
+        latestContainer.innerHTML = latestBlogs.map(blog => `
+          <li>
+
+            <div class="sidebar__post-image">
+              <img src="${blog.image}" alt="${blog.title}">
+            </div>
+
+            <div class="sidebar__post-content">
+
+              <h3>
+
+                <span class="sidebar__post-content-meta">
+                  <i class="fa-solid fa-user-circle"></i>
+                  Admin
+                </span>
+
+                <a href="blogs-details.html?id=${blog._id}">
+                  ${blog.title}
+                </a>
+
+              </h3>
+
+            </div>
+
+          </li>
+        `).join("");
+
+      }
+
+      // =========================
+      // SEO TITLE
+      // =========================
+
+      document.title = currentBlog.title + " | Viraliq";
 
     } catch (error) {
-      console.error("Error loading blogs:", error);
+
+      console.error("Error loading blog details:", error);
+
     }
+
   }
 
-  function createSlug(text) {
+  // =========================
+  // FORMAT DESCRIPTION
+  // =========================
+
+  function formatDescription(text) {
+
+    if (!text) return "";
+
     return text
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)+/g, "");
+      .split("\n")
+      .filter(line => line.trim() !== "")
+      .map(line => `<p class="blog-details__text-2 mb-3">${line}</p>`)
+      .join("");
+
   }
 
 })();
