@@ -27,7 +27,9 @@
 
       }
 
-      const plans = data.plans;
+      const plans = data.plans.sort((a, b) => {
+        return Number(a.planPrice) - Number(b.planPrice);
+      });
 
       if (!plans.length) {
 

@@ -9,7 +9,7 @@ const pricingSchema = new mongoose.Schema(
     },
 
     planPrice: {
-      type: Number,
+      type: String,
       required: true,
     },
 
